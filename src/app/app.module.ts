@@ -8,19 +8,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from './Components/navigation/navigation.component';
 import { HomeComponent } from './Components/home/home.component';
 import { BasicGetAPiService } from 'src/services/Api/basicGet.service';
+import { CandidateApiService } from 'src/services/Api/candidate.service';
+import { ClientApiService } from 'src/services/Api/client.service';
+import { EmployerApiService } from 'src/services/Api/employer.service';
+import { EmployerCompanyApiService } from 'src/services/Api/employerCompany.service';
+import { ImplementationApiService } from 'src/services/Api/implementation.service';
+import { RequirementApiService } from 'src/services/Api/requirement.service';
+import { SubmissionApiService } from 'src/services/Api/submission.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationComponent,
-    HomeComponent
+  declarations: [AppComponent, NavigationComponent, HomeComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [
+    BasicGetAPiService,
+    CandidateApiService,
+    ClientApiService,
+    EmployerApiService,
+    EmployerCompanyApiService,
+    ImplementationApiService,
+    RequirementApiService,
+    SubmissionApiService,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ],
-  providers: [BasicGetAPiService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
