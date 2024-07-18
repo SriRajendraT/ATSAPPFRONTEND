@@ -12,6 +12,6 @@ export class REQUIREDVISAExt extends REQUIREDVISA {
 }
 
 export class ReqVisa {
-    req:REQUIREDVISAExt;
-    visas:VISA[];
+    requiredVisaExt:REQUIREDVISAExt;
+    visasList:VISA[];
 }
