@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { NavigationComponent } from './Components/navigation/navigation.component';
-import { HomeComponent } from './Components/home/home.component';
 import { BasicGetAPiService } from 'src/services/Api/basicGet.service';
 import { CandidateApiService } from 'src/services/Api/candidate.service';
 import { ClientApiService } from 'src/services/Api/client.service';
@@ -17,7 +15,7 @@ import { RequirementApiService } from 'src/services/Api/requirement.service';
 import { SubmissionApiService } from 'src/services/Api/submission.service';
 
 @NgModule({
-  declarations: [AppComponent, NavigationComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     BasicGetAPiService,
