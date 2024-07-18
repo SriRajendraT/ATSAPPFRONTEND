@@ -11,13 +11,15 @@ import { SUBMISSIONSTATUS } from 'src/app/Models/SUBMISSIONSTATUS.Model';
 import { TAXTERM } from 'src/app/Models/TAXTERM.Model';
 import { VISA } from 'src/app/Models/VISA.Model';
 import { WORKNATURE } from 'src/app/Models/WORKNATURE.Model';
+import { APIURL } from './APiUrl';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BasicGetAPiService {
   constructor(private http: HttpClient) {}
-  BasicGetAPi: string = 'https://localhost:7026/api/BasicGet/';
+  
+  BasicGetAPi: string = APIURL.link +'BasicGet/';
 
   getAllGenders(): Observable<GENDER[]> {
     return this.http.post<GENDER[]>(this.BasicGetAPi + 'GetGENDERS', '');
