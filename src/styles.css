@@ -7,3 +7,9 @@
     margin-right: 10px;
     background-color:#9638d18c;
 }
+
+.d-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
