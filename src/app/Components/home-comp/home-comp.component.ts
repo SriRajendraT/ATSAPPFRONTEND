@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReqVisa } from 'src/app/Models/REQUIREDVISA.Model';
+import { SubmissionExt } from 'src/app/Models/SUBMISSION.Model';
 import { RequirementApiService } from 'src/services/Api/requirement.service';
+import { SubmissionApiService } from 'src/services/Api/submission.service';
 
 @Component({
   selector: 'app-home-comp',
@@ -8,38 +10,35 @@ import { RequirementApiService } from 'src/services/Api/requirement.service';
   styleUrls: ['./home-comp.component.css'],
 })
 export class HomeCompComponent implements OnInit {
-  requirements: ReqVisa[];
-  requirement: ReqVisa;
-  constructor(private reqapi: RequirementApiService) {}
+  countOfReq: number = 0;
+  noOfSubmission: number = 0;
+
+  constructor(
+    private reqapi: RequirementApiService,
+    private subapi: SubmissionApiService
+  ) {}
 
   ngOnInit(): void {
     this.getAllRequirements();
+    this.getAllSubmissions();
   }
 
   getAllRequirements() {
     this.reqapi.getAllRequirements().subscribe((result: ReqVisa[]) => {
       if (result) {
-        this.requirements = result;
+        this.countOfReq = result.length;
       } else {
-        this.requirements = [];
+        this.countOfReq = 0;
       }
     });
   }
 
-  getRequirementById(id: number) {
-    this.reqapi.getRequirementById(id).subscribe((result: ReqVisa) => {
+  getAllSubmissions() {
+    this.subapi.getAllSubmissions().subscribe((result: SubmissionExt[]) => {
       if (result) {
-        this.requirement = result;
-      }
-    });
-  }
-
-  getRequirementByName(name: string) {
-    this.reqapi.getRequirementByName(name).subscribe((result: ReqVisa[]) => {
-      if (result) {
-        this.requirements = result;
+        this.noOfSubmission = result.length;
       } else {
-        this.requirements = [];
+        this.noOfSubmission = 0;
       }
     });
   }
