@@ -1,0 +1,64 @@
+<p>add-or-update-implementation works!</p>
+<div class="container-fluid">
+  <div class="row d-center">
+    <div class="col-md-6">
+      <div>
+        <h3
+          class="text-center"
+          [ngClass]="
+            'text' +
+            (implementationFormGroup.controls['implementationid'].value > 0
+              ? '-warning'
+              : '-success')
+          "
+        >
+          {{
+            implementationFormGroup.controls["implementationid"].value > 0
+              ? "Update"
+              : "Register"
+          }}
+          Implementation
+        </h3>
+      </div>
+      <form [formGroup]="implementationFormGroup">
+        <div class="form-group mb-3" [hidden]="true">
+            <label for="implementationid" class="form-label">Implementation ID</label>
+            <input
+              type="text"
+              formControlName="implementationid"
+              id="implementationid"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="implementationname" class="form-label">Implementation Name</label>
+            <input
+              type="text"
+              formControlName="implementationname"
+              id="implementationname"
+              class="form-control"
+            />
+          </div>
+          <div class="btn-div mb-5">
+            <button
+              [ngClass]="
+                'btn btn' +
+                (implementationFormGroup.controls['implementationid'].value > 0
+                  ? '-warning'
+                  : '-primary')
+              "
+              (click)="addOrUpdatedImplementation()"
+            >
+              {{
+                implementationFormGroup.controls["implementationid"].value > 0 ? "Edit" : "Signup"
+              }}
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-dark" (click)="onBack()">
+              Back
+            </button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

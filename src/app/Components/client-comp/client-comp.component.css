@@ -1,0 +1,13 @@
+.clientdiv{
+    display: flex;
+    position: absolute;
+}
+
+.addclient{
+    width: auto;
+}
+
+.clienttitle{
+    text-align: center;
+}
+

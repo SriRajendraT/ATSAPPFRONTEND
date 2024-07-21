@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ReqVisa } from 'src/app/Models/REQUIREDVISA.Model';
 import { RequirementApiService } from 'src/services/Api/requirement.service';
+import { StorageService } from 'src/services/storage-service/storage.service';
 
 @Component({
   selector: 'app-requirment-comp',
@@ -10,7 +12,7 @@ import { RequirementApiService } from 'src/services/Api/requirement.service';
 export class RequirmentCompComponent implements OnInit {
   requirements: ReqVisa[];
   requirement: ReqVisa;
-  constructor(private reqapi: RequirementApiService) {}
+  constructor(private reqapi: RequirementApiService,private router:Router,private storge:StorageService) {}
 
   ngOnInit(): void {
     this.getAllRequiremets();
@@ -42,5 +44,9 @@ export class RequirmentCompComponent implements OnInit {
         this.requirements = [];
       }
     });
+  }
+
+  addOrUpdateRequirement(){
+    this.router.navigate(['/addOrUpdateRequirement']);
   }
 }

@@ -1,0 +1,12 @@
+.empdiv{
+    display: flex;
+    position: absolute;
+}
+
+.addemp{
+    width: auto;
+}
+
+.emptitle{
+    text-align: center;
+}

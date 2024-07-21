@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IMPLEMENTATION } from 'src/app/Models/IMPLEMENTATION.Model';
 import { ImplementationApiService } from 'src/services/Api/implementation.service';
+import { StorageService } from 'src/services/storage-service/storage.service';
 
 @Component({
   selector: 'app-implementation-comp',
@@ -10,7 +12,11 @@ import { ImplementationApiService } from 'src/services/Api/implementation.servic
 export class ImplementationCompComponent implements OnInit {
   implementations: IMPLEMENTATION[];
   implementation: IMPLEMENTATION;
-  constructor(private implementationapi: ImplementationApiService) {}
+  constructor(
+    private implementationapi: ImplementationApiService,
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.getAllImplementation();
@@ -48,5 +54,15 @@ export class ImplementationCompComponent implements OnInit {
           this.implementations = [];
         }
       });
+  }
+
+  addOrUpdateImplementation(){
+    this.storage.set('implementationbyid','');
+    this.router.navigate(['/addorupdateimplementation']);
+  }
+
+  onEdit(id:number){
+    this.storage.set('implementationbyid',JSON.stringify({id:id,isView:false}));
+    this.router.navigate(['/addorupdateimplementation']);
   }
 }

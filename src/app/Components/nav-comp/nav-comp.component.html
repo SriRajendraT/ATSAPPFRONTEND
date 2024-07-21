@@ -1,14 +1,185 @@
 <div class="navbar navbar-expand-sm">
-    <!-- <p class="navbar-nav">nav-comp works!</p> -->
-    <img src="../../../assets/Images/Kloudhunt Logo.png" alt="">
-    <h3>Applicant Tracking System</h3>
-    <ul class="navbar-nav">
-        <li><a href="#" class="nav-link" routerLink="/" routerLinkActive='active'>Dashboard</a></li>
-        <li><a href="#" class="nav-link" routerLink="/requirement" routerLinkActive='active'>Requirements</a></li>
-        <li><a href="#" class="nav-link" routerLink="/client" routerLinkActive='active'>Client</a></li>
-        <li><a href="#" class="nav-link" routerLink="/candidate" routerLinkActive='active'>Candidate</a></li>
-        <li><a href="#" class="nav-link" routerLink="/employercompany" routerLinkActive='active'>Employer Company</a></li>
-        <li><a href="#" class="nav-link" routerLink="/employer" routerLinkActive='active'>Employer</a></li>
-        <li><a href="#" class="nav-link" routerLink="/implementation" routerLinkActive='active'>Implementation</a></li>
-    </ul>
+  <!-- <p class="navbar-nav">nav-comp works!</p> -->
+  <img src="../../../assets/Images/Kloudhunt Logo.png" alt="" />
+  <!-- <h3>Applicant Tracking System</h3> -->
+  <button
+    type="button"
+    class="navbar-toggler"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapsibleNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav modules">
+        <li>
+          <a href="#" class="nav-link" routerLink="/" routerLinkActive="active"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="nav-link"
+            routerLink="/requirement"
+            routerLinkActive="active"
+            >Requirements</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="nav-link"
+            routerLink="/client"
+            routerLinkActive="active"
+            >Client</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="nav-link"
+            routerLink="/candidate"
+            routerLinkActive="active"
+            >Candidate</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="nav-link"
+            routerLink="/employercompany"
+            routerLinkActive="active"
+            >Employer Company</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="nav-link"
+            routerLink="/employer"
+            routerLinkActive="active"
+            >Employer</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="nav-link"
+            routerLink="/implementation"
+            routerLinkActive="active"
+            >Implementation</a
+          >
+        </li>
+      </ul>
+  </div>
 </div>
+
+<!-- <nav
+  class="navbar navbar-expand-sm bg-dark navbar-dark"
+  style="position: sticky; top: 0; z-index: 3"
+>
+  <button
+    type="button"
+    class="navbar-toggler"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapsibleNavbar"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a asp-action="index" asp-controller="home" class="nav-link">
+          <span class="material-symbols-outlined"> patient_list </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a asp-action="create" asp-controller="home" class="nav-link">
+          <span class="material-symbols-outlined"> person_add </span>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuLink"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span class="material-symbols-outlined"> manage_accounts </span>
+        </a>
+        <div
+          class="dropdown-menu"
+          aria-labelledby="navbarDropdownMenuLink"
+          style="background: rgba(0, 120, 0, 0.3); backdrop-filter: blur(10px)"
+        >
+          <a
+            class="dropdown-item"
+            asp-controller="Administration"
+            asp-action="ListUsers"
+            style="width: auto; color: white"
+          >
+            <div style="display: flex">
+              <span class="material-symbols-outlined"> group </span> Users
+            </div>
+          </a>
+          <a
+            class="dropdown-item"
+            asp-controller="Administration"
+            asp-action="ListRoles"
+            style="width: auto; color: white"
+          >
+            <div style="display: flex">
+              <span class="material-symbols-outlined"> task </span> Roles
+            </div>
+          </a>
+          <a
+            class="dropdown-item"
+            asp-controller="Account"
+            asp-action="ChangePassword"
+            style="width: auto; color: white"
+          >
+            <div style="display: flex">
+              <span class="material-symbols-outlined"> lock_reset </span>
+              Password
+            </div>
+          </a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <form method="post" asp-action="logout" asp-controller="account">
+          <button
+            type="submit"
+            class="nav-link btn btn-link py-0"
+            style="width: auto"
+          >
+            <span
+              class="material-symbols-outlined"
+              style="display: flex; justify-content: flex-end"
+              >logout</span
+            ><span style="display: flex; justify-content: flex-end">
+              @User.Identity.Name</span
+            >
+          </button>
+        </form>
+      </li>
+      <li class="nav-item">
+        <a asp-action="login" asp-controller="account" class="nav-link">
+          <span class="material-symbols-outlined"> login </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a asp-action="register" asp-controller="account" class="nav-link">
+          <span class="material-symbols-outlined"> add_reaction </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav> -->

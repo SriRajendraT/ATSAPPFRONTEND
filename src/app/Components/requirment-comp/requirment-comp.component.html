@@ -1,2 +1,50 @@
 <p>requirment-comp works!</p>
-<app-submission-comp></app-submission-comp>
+<div class="container mt-3">
+    <div class="reqdiv">
+        <button class="btn btn-primary mb-3 addreq" (click)="addOrUpdateRequirement()">
+            <i class="fa-solid fa-file"></i> Add Requirement
+        </button>
+    </div>
+    <h2 class="reqtitle">Requirements List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Operations</th>
+                <th>Requirement Id</th>
+                <th>Requirement Title</th>
+                <th>Requirement Type</th>
+                <th>Requirement Rate</th>
+                <th>Requirement Implementation</th>
+                <th>Requirement Client</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let req of requirements">
+                <td>
+                    <div class="row">
+                      <div class="col-4">
+                        <i type="button" class="fa-solid fa-user-pen text-warning"></i>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <i class="fa-solid fa-eye text-info" type="button"></i>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <i type="button" class="fa-solid fa-user-xmark text-danger"></i>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{req.requirement.requirementid}}</td>
+                  <td>{{req.requirement.requirementtitle}}</td>
+                  <td>{{req.requirement.requirementwnname}}</td>
+                  <td>{{req.requirement.requirementmaxrate}}</td>
+                  <td>{{req.requirement.requirementimplementationname}}</td>
+                  <td>{{req.requirement.requirementclientname}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- <app-submission-comp></app-submission-comp> -->

@@ -1,1 +1,50 @@
 <p>candidate-comp works!</p>
+<div class="container mt-3">
+  <div class="candiv">
+    <button
+      class="btn btn-primary mb-3 addcand"
+      (click)="addOrUpdateCandidate()"
+    >
+      <i class="fa-solid fa-user-plus"></i> Add Candidate
+    </button>
+  </div>
+  <h2 class="candtitle">Candidate List</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Operations</th>
+        <th>Candidate's Id</th>
+        <th>Candidate's Full Name</th>
+        <th>Candidate's Visa</th>
+        <th>Candidate's Tax Terms</th>
+        <th>Candidate's Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cand of candidates">
+        <td>
+          <div class="row">
+            <div class="col-4">
+              <i type="button" class="fa-solid fa-user-pen text-warning"></i>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <i class="fa-solid fa-eye text-info" type="button"></i>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <i type="button" class="fa-solid fa-user-xmark text-danger"></i>
+            </div>
+          </div>
+        </td>
+        <td>{{ cand.candidateid }}</td>
+        <td>{{ cand.candidatefullname }}</td>
+        <td>{{ cand.candidatevisaname }}</td>
+        <td>{{ cand.candidatetaxtermname }}</td>
+        <td>{{ cand.candidaterate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

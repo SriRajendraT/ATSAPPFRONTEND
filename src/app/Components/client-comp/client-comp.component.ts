@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CLIENT } from 'src/app/Models/CLIENT.Model';
 import { ClientApiService } from 'src/services/Api/client.service';
+import { StorageService } from 'src/services/storage-service/storage.service';
 
 @Component({
   selector: 'app-client-comp',
@@ -10,7 +12,11 @@ import { ClientApiService } from 'src/services/Api/client.service';
 export class ClientCompComponent implements OnInit {
   clients: CLIENT[];
   client: CLIENT;
-  constructor(private clientApi: ClientApiService) {}
+  constructor(
+    private clientApi: ClientApiService,
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.getAllClients();
@@ -43,4 +49,15 @@ export class ClientCompComponent implements OnInit {
       }
     });
   }
+
+  addOrUpdateClient(){
+    this.storage.set('clientbyid','');
+    this.router.navigate(['/addorupdateClient']);
+  }
+
+  onEdit(id:number){
+    this.storage.set('clientbyid',JSON.stringify({id:id,isView:false}));
+    this.router.navigate(['/addorupdateClient']);
+  }
+  
 }

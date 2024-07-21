@@ -1,0 +1,12 @@
+.reqdiv{
+    display: flex;
+    position: absolute;
+}
+
+.addreq{
+    width: auto;
+}
+
+.reqtitle{
+    text-align: center;
+}

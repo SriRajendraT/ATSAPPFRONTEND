@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CandidateExt } from 'src/app/Models/CANDIDATE.Model';
 import { CandidateApiService } from 'src/services/Api/candidate.service';
+import { StorageService } from 'src/services/storage-service/storage.service';
 
 @Component({
   selector: 'app-candidate-comp',
@@ -10,7 +12,11 @@ import { CandidateApiService } from 'src/services/Api/candidate.service';
 export class CandidateCompComponent implements OnInit {
   candidates: CandidateExt[];
   candidate: CandidateExt;
-  constructor(private candidateApi: CandidateApiService) {}
+  constructor(
+    private candidateApi: CandidateApiService,
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.getAllCandidates();
@@ -44,5 +50,10 @@ export class CandidateCompComponent implements OnInit {
           this.candidates = [];
         }
       });
+  }
+
+  addOrUpdateCandidate() {
+    this.storage.set('candidatebyid','');
+    this.router.navigate(['/addorupdatecandidate']);
   }
 }

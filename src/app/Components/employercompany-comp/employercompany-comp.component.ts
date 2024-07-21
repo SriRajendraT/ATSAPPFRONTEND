@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EMPLOYERCOMPANY } from 'src/app/Models/EMPLOYERCOMPANY.Model';
 import { EmployerCompanyApiService } from 'src/services/Api/employerCompany.service';
+import { StorageService } from 'src/services/storage-service/storage.service';
 
 @Component({
   selector: 'app-employercompany-comp',
@@ -10,7 +12,7 @@ import { EmployerCompanyApiService } from 'src/services/Api/employerCompany.serv
 export class EmployercompanyCompComponent implements OnInit {
   employerCompanies: EMPLOYERCOMPANY[];
   employerCompany: EMPLOYERCOMPANY;
-  constructor(private empCompApi: EmployerCompanyApiService) {}
+  constructor(private empCompApi: EmployerCompanyApiService,private router:Router,private storage:StorageService) {}
 
   ngOnInit(): void {
     this.getAllEmployerCompanies();
@@ -48,5 +50,10 @@ export class EmployercompanyCompComponent implements OnInit {
           this.employerCompanies = [];
         }
       });
+  }
+
+  addOrUpdateEmployerCompany(){
+    this.storage.set('employercompanybyid','');
+    this.router.navigate(['/addorupdateemployercompany']);
   }
 }

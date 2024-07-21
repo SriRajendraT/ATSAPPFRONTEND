@@ -1,15 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
-.icon{
-    display: flex;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-color:#9638d18c;
+.icons{
+  display: flex;
+  justify-content: space-around;
 }
 
-.d-center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.d-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* <uniquifier>: Use a unique and descriptive class name */
+/* <weight>: Use a value from 100 to 700 */
+
+.roboto-mono-fontclass {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.work-sans-fontclass {
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 14px;
+}
+
+.table{
+  text-align: center;
+}
+
+table.tblbg,table.tblbg th,table.tblbg tr,table.tblbg td{
+  background: rgba(46, 43, 43, 0.13) !important;
+  color: #3a0000 !important;
+}
+.tblbg b{
+  color: red !important;
+}
+table.tblbg{
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  overflow: hidden;
 }

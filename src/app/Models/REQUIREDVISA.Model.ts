@@ -1,3 +1,4 @@
+import { RequirementExt } from "./REQUIREMENT.Model";
 import { VISA } from "./VISA.Model";
 
 export class REQUIREDVISA {
@@ -12,6 +13,6 @@ export class REQUIREDVISAExt extends REQUIREDVISA {
 }
 
 export class ReqVisa {
-    requiredVisaExt:REQUIREDVISAExt;
+    requirement:RequirementExt;
     visasList:VISA[];
 }

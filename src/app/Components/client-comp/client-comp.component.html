@@ -1,1 +1,49 @@
 <p>client-comp works!</p>
+
+<div class="container-fluid mt-3">
+  <div class="clientdiv">
+    <button
+      class="btn btn-primary mb-3 addclient"
+      (click)="addOrUpdateClient()"
+    >
+      <i class="fa-solid fa-users-rectangle"></i> Add Client
+    </button>
+  </div>
+  <h2 class="clienttitle">Clients List</h2>
+  <table class="table table-striped tblbg">
+    <thead>
+      <tr>
+        <th>Operatons</th>
+        <th>Client Id</th>
+        <th>Client Name</th>
+        <th>Created Date</th>
+        <th>User Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td class="icons">
+          <div class="row ">
+            <div class="col-4">
+              <i type="button" (click)="onEdit(client.clientid)" class="fa-solid fa-user-pen text-warning"></i>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-4">
+              <i class="fa-solid fa-eye text-info" type="button"></i>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-4">
+              <i type="button" class="fa-solid fa-user-xmark text-danger"></i>
+            </div>
+          </div>
+        </td>
+        <td>{{client.clientid}}</td>
+        <td>{{ client.clientname }}</td>
+        <td>{{client.clientcd}}</td>
+        <td>N/A</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

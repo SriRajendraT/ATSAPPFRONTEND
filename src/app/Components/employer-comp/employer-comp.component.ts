@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmployerExt } from 'src/app/Models/EMPLOYER.Model';
 import { EmployerApiService } from 'src/services/Api/employer.service';
+import { StorageService } from 'src/services/storage-service/storage.service';
 
 @Component({
   selector: 'app-employer-comp',
@@ -10,7 +12,7 @@ import { EmployerApiService } from 'src/services/Api/employer.service';
 export class EmployerCompComponent implements OnInit {
   employers: EmployerExt[];
   employer: EmployerExt;
-  constructor(private empapi: EmployerApiService) {}
+  constructor(private empapi: EmployerApiService,private router:Router,private storage:StorageService) {}
 
   ngOnInit(): void {
     this.getAllEmployers();
@@ -42,5 +44,10 @@ export class EmployerCompComponent implements OnInit {
         this.employers = [];
       }
     });
+  }
+
+  addOrUpdateEmployer(){
+    this.storage.set('employerbyid','');
+    this.router.navigate(['/addorupdateemployer']);
   }
 }

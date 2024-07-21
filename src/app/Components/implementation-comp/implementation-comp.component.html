@@ -1,1 +1,48 @@
 <p>implementation-comp works!</p>
+<div class="container-fluid mt-3">
+  <div class="implediv">
+    <button
+      class="btn btn-primary mb-3 implebtn"
+      (click)="addOrUpdateImplementation()"
+    >
+      <i class="fa-solid fa-users-between-lines"></i> Add Impementation
+    </button>
+  </div>
+  <h2 class="impletitle">Implementation List</h2>
+  <table class="table table-striped tblbg">
+    <thead>
+      <tr>
+        <th>Operations</th>
+        <th>Implementation Id</th>
+        <th>Implementation Name</th>
+        <th>Implementation Created Date</th>
+        <th>User Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let imple of implementations">
+        <td class="icons">
+          <div class="row">
+            <div class="col-4">
+              <i type="button" (click)="onEdit(imple.implementationid)"class="fa-solid fa-user-pen text-warning"></i>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <i class="fa-solid fa-eye text-info" type="button"></i>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <i type="button" class="fa-solid fa-user-xmark text-danger"></i>
+            </div>
+          </div>
+        </td>
+        <td>{{ imple.implementationid }}</td>
+        <td>{{ imple.implementationname }}</td>
+        <td>{{ imple.implementationcd }}</td>
+        <td>N/A</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

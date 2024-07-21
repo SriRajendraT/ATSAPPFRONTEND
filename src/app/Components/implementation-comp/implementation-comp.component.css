@@ -1,0 +1,13 @@
+.implediv{
+    display: flex;
+    position: absolute;
+}
+
+.implebtn{
+    width: auto;
+}
+
+.impletitle{
+    text-align: center;
+}
+

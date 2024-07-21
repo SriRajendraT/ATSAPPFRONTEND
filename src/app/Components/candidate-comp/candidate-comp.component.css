@@ -1,0 +1,12 @@
+.candiv{
+    display: flex;
+    position: absolute;
+}
+
+.addcand{
+    width: auto;
+}
+
+.candtitle{
+    text-align: center;
+}

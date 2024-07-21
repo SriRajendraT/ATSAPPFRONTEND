@@ -1,0 +1,12 @@
+.empcompdiv{
+    display: flex;
+    position: absolute;
+}
+
+.addcmpcomp{
+    width: auto;
+}
+
+.empcomptitle{
+    text-align: center;
+}

@@ -9,9 +9,10 @@ export class CANDIDATE {
     candidateut:Time;
     candidateemail:string;
     candidatephone:string;
-    candidateloccountry:number;
-    candidatelocstate:number;
-    candidateloccity:number;
+    candidatevisa:number;
+    candidatecountry:number;
+    candidatestate:number;
+    candidatecity:number;
     candidateaddress:string;
     candidategender:number;
     candidatetaxterm:number;
@@ -28,4 +29,5 @@ export class CandidateExt extends CANDIDATE {
     candidateloccityname:string;
     candidatetaxtermname:string;
     candiateemployername:string;
+    candidatevisaname:string;
 }

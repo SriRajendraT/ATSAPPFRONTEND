@@ -1,0 +1,64 @@
+<p>add-or-update-client works!</p>
+<div class="container-fluid">
+  <div class="row d-center">
+    <div class="col-md-6">
+      <div>
+        <h3
+          class="text-center"
+          [ngClass]="
+            'text' +
+            (clientFormGroup.controls['clientid'].value > 0
+              ? '-warning'
+              : '-success')
+          "
+        >
+          {{
+            clientFormGroup.controls["clientid"].value > 0
+              ? "Update"
+              : "Register"
+          }}
+          Client
+        </h3>
+      </div>
+      <form [formGroup]="clientFormGroup">
+        <div class="form-group mb-3" [hidden]="true">
+          <label for="clientid" class="form-label">Client ID</label>
+          <input
+            type="text"
+            formControlName="clientid"
+            id="clientid"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="clientname" class="form-label">Client Name</label>
+          <input
+            type="text"
+            formControlName="clientname"
+            id="clientname"
+            class="form-control"
+          />
+        </div>
+        <div class="btn-div mb-5">
+          <button
+            [ngClass]="
+              'btn btn' +
+              (clientFormGroup.controls['clientid'].value > 0
+                ? '-warning'
+                : '-primary')
+            "
+            (click)="addOrUpdateClient()"
+          >
+            {{
+              clientFormGroup.controls["clientid"].value > 0 ? "Edit" : "Signup"
+            }}
+          </button>
+          &nbsp;
+          <button type="button" class="btn btn-dark" (click)="onBack()">
+            Back
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

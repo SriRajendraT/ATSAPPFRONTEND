@@ -1,1 +1,43 @@
 <p>employer-comp works!</p>
+<div class="container mt-3">
+    <div class="empdiv">
+        <button class="btn btn-primary mb-3 addemp" (click)="addOrUpdateEmployer()">
+            <i class="fa-solid fa-building-user"></i> Add Employer
+        </button>
+    </div>
+    <h2 class="emptitle">Employers List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Operations</th>
+                <th>Employer Name</th>
+                <th>Employer Company</th>
+                <th>User Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emp of employers">
+                <td>
+                    <div class="row">
+                      <div class="col-4">
+                        <i type="button" class="fa-solid fa-user-pen text-warning"></i>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <i class="fa-solid fa-eye text-info" type="button"></i>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <i type="button" class="fa-solid fa-user-xmark text-danger"></i>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{emp.employername}}</td>
+                  <td>{{emp.employercompanyname}}</td>
+                  <td>N/A</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
