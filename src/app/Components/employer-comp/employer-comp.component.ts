@@ -50,4 +50,9 @@ export class EmployerCompComponent implements OnInit {
     this.storage.set('employerbyid','');
     this.router.navigate(['/addorupdateemployer']);
   }
+
+  onEdit(id:number){
+    this.storage.set('employerbyid',JSON.stringify({id:id,isView:false}));
+    this.router.navigate(['/addorupdateemployer']);
+  }
 }

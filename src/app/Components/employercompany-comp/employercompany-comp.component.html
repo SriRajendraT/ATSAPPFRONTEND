@@ -1,5 +1,5 @@
 <p>employercompany-comp works!</p>
-<div class="container mt-3">
+<div class="container-fulid mt-3">
   <div class="empcompdiv">
     <button
       class="btn btn-primary mb-3 addcmpcomp"
@@ -9,20 +9,22 @@
     </button>
   </div>
   <h2 class="empcomptitle">Employer Company List</h2>
-  <table class="table table-striped">
+  <table class="table table-striped tblbg">
     <thead>
       <tr>
         <th>Operations</th>
+        <th>Employer Company Id</th>
         <th>Employer Company Name</th>
+        <th>Created Date</th>
         <th>User Created</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let empComp of employerCompanies">
-        <td>
+        <td class="icons">
           <div class="row">
             <div class="col-4">
-              <i type="button" class="fa-solid fa-user-pen text-warning"></i>
+              <i type="button" (click)="onEdit(empComp.employercompanyid)" class="fa-solid fa-user-pen text-warning"></i>
             </div>
           </div>
           <div class="row">
@@ -36,7 +38,9 @@
             </div>
           </div>
         </td>
+        <td>{{empComp.employercompanyid}}</td>
         <td>{{ empComp.employercompanyname }}</td>
+        <td>{{empComp.employercompanycd}}</td>
         <td>N/A</td>
       </tr>
     </tbody>

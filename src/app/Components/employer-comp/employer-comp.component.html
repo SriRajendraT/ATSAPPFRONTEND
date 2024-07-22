@@ -1,23 +1,25 @@
 <p>employer-comp works!</p>
-<div class="container mt-3">
+<div class="container-fulid mt-3">
     <div class="empdiv">
         <button class="btn btn-primary mb-3 addemp" (click)="addOrUpdateEmployer()">
             <i class="fa-solid fa-building-user"></i> Add Employer
         </button>
     </div>
     <h2 class="emptitle">Employers List</h2>
-    <table class="table table-striped">
+    <table class="table table-striped tblbg">
         <thead>
             <tr>
                 <th>Operations</th>
+                <th>Employer Id</th>
                 <th>Employer Name</th>
                 <th>Employer Company</th>
+                <th>Created Date</th>
                 <th>User Created</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let emp of employers">
-                <td>
+                <td class="icons">
                     <div class="row">
                       <div class="col-4">
                         <i type="button" class="fa-solid fa-user-pen text-warning"></i>
@@ -34,8 +36,10 @@
                       </div>
                     </div>
                   </td>
+                  <td>{{emp.employeid}}</td>
                   <td>{{emp.employername}}</td>
                   <td>{{emp.employercompanyname}}</td>
+                  <td>{{emp.employercd}}</td>
                   <td>N/A</td>
             </tr>
         </tbody>

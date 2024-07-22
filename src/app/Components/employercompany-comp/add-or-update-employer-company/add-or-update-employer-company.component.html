@@ -1,1 +1,64 @@
 <p>add-or-update-employer-company works!</p>
+<div class="container-fulid">
+  <div class="row d-center">
+    <div class="col-md-6">
+      <div>
+        <h3
+          class="text-center"
+          [ngClass]="
+            'text' +
+            (empCompFormGroup.controls['employercompanyid'].value > 0
+              ? '-warning'
+              : '-success')
+          "
+        >
+          {{
+            empCompFormGroup.controls["employercompanyid"].value > 0
+              ? "Update"
+              : "Register"
+          }}
+          Employer Company
+        </h3>
+      </div>
+      <form [formGroup]="empCompFormGroup">
+        <div class="form-group mb-3" [hidden]="true">
+            <label for="employercompanyid" class="form-label">Employer Company ID</label>
+            <input
+              type="text"
+              formControlName="employercompanyid"
+              id="employercompanyid"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="employercompanyname" class="form-label">Employer Company Name</label>
+            <input
+              type="text"
+              formControlName="employercompanyname"
+              id="employercompanyname"
+              class="form-control"
+            />
+          </div>
+          <div class="btn-div mb-5">
+            <button
+              [ngClass]="
+                'btn btn' +
+                (empCompFormGroup.controls['employercompanyid'].value > 0
+                  ? '-warning'
+                  : '-primary')
+              "
+              (click)="addOrUpdateEmployerCompany()"
+            >
+              {{
+                empCompFormGroup.controls["employercompanyid"].value > 0 ? "Edit" : "Signup"
+              }}
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-dark" (click)="onBack()">
+              Back
+            </button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
