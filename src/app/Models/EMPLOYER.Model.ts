@@ -1,7 +1,7 @@
 import { Time } from "@angular/common";
 
 export class EMPLOYER {
-    employeid:number;
+    employerid:number;
     employername:string;
     employercd:Date;
     employerct:Time;

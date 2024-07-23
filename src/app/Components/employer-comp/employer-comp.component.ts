@@ -12,7 +12,11 @@ import { StorageService } from 'src/services/storage-service/storage.service';
 export class EmployerCompComponent implements OnInit {
   employers: EmployerExt[];
   employer: EmployerExt;
-  constructor(private empapi: EmployerApiService,private router:Router,private storage:StorageService) {}
+  constructor(
+    private empapi: EmployerApiService,
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.getAllEmployers();
@@ -46,13 +50,13 @@ export class EmployerCompComponent implements OnInit {
     });
   }
 
-  addOrUpdateEmployer(){
-    this.storage.set('employerbyid','');
+  addOrUpdateEmployer() {
+    this.storage.set('employerbyid', '');
     this.router.navigate(['/addorupdateemployer']);
   }
 
-  onEdit(id:number){
-    this.storage.set('employerbyid',JSON.stringify({id:id,isView:false}));
+  onEdit(id: number) {
+    this.storage.set('employerbyid', JSON.stringify({ id: id, isView: false }));
     this.router.navigate(['/addorupdateemployer']);
   }
 }

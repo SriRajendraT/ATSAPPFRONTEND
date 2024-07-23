@@ -1,1 +1,109 @@
 <p>add-or-update-employer works!</p>
+<div class="container-fulid mt-3">
+  <div class="row d-center">
+    <div class="col-md-6">
+      <div>
+        <h3
+          class="text-center"
+          [ngClass]="
+            'text' +
+            (employerFromGroup.controls['employerid'].value > 0
+              ? '-warning'
+              : '-success')
+          "
+        >
+          {{
+            employerFromGroup.controls["employerid"].value > 0
+              ? "Update"
+              : "Register"
+          }}
+          Employer
+        </h3>
+      </div>
+      <form [formGroup]="employerFromGroup">
+        <div class="form-group mb-3" hidden>
+          <label for="employerid" class="form-label">Employer ID</label>
+          <input
+            type="text"
+            formControlName="employerid"
+            id="employerid"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="employername" class="form-label"
+            >Employer Name</label
+          >
+          <input
+            type="text"
+            formControlName="employername"
+            id="employername"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="employercompany" class="form-label"
+            >Employer Company</label
+          >
+          <select
+            formControlName="employercompany"
+            name="employercompany"
+            id="employercompany"
+            class="form-select"
+          >
+            <option value="0">Select Company</option>
+            <option
+              *ngFor="let empComp of employerCompanies"
+              [value]="empComp.employercompanyid"
+            >
+              {{ empComp.employercompanyname }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <label for="employeremail" class="form-label">Employer Email</label>
+          <input
+            type="email"
+            for="employeremail"
+            id="employeremail"
+            class="form-control"
+            formControlName="employeremail"
+          />
+        </div>
+        <div class="from-group mb-3">
+          <label for="employerphonenumber" class="form-label"
+            >Employer Phone Number</label
+          >
+          <input
+            type="tel"
+            for="employerphonenumber"
+            id="employerphonenumber"
+            class="form-control"
+            formControlName="employerphonenumber"
+          />
+        </div>
+        <div class="btn-div mb-5">
+          <button
+            (click)="addOrUpdateEmployer()"
+            [ngClass]="
+              'btn btn' +
+              (employerFromGroup.controls['employerid'].value > 0
+                ? '-warning'
+                : '-primary')
+            "
+          >
+            {{
+              employerFromGroup.controls["employerid"].value > 0
+                ? "Edit"
+                : "Signup"
+            }}
+          </button>
+          &nbsp;
+          <button class="btn btn-dark" type="button" (click)="onBack()">
+            Back
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

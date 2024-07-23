@@ -22,7 +22,7 @@
                 <td class="icons">
                     <div class="row">
                       <div class="col-4">
-                        <i type="button" class="fa-solid fa-user-pen text-warning"></i>
+                        <i type="button" (click)="onEdit(emp.employerid)" class="fa-solid fa-user-pen text-warning"></i>
                       </div>
                     </div>
                     <div class="row">
@@ -36,7 +36,7 @@
                       </div>
                     </div>
                   </td>
-                  <td>{{emp.employeid}}</td>
+                  <td>{{emp.employerid}}</td>
                   <td>{{emp.employername}}</td>
                   <td>{{emp.employercompanyname}}</td>
                   <td>{{emp.employercd}}</td>
