@@ -12,7 +12,7 @@ import { StorageService } from 'src/services/storage-service/storage.service';
 export class RequirmentCompComponent implements OnInit {
   requirements: ReqVisa[];
   requirement: ReqVisa;
-  constructor(private reqapi: RequirementApiService,private router:Router,private storge:StorageService) {}
+  constructor(private reqapi: RequirementApiService,private router:Router,private storage:StorageService) {}
 
   ngOnInit(): void {
     this.getAllRequiremets();
@@ -47,6 +47,12 @@ export class RequirmentCompComponent implements OnInit {
   }
 
   addOrUpdateRequirement(){
+    this.storage.set('requirementbyid','');
     this.router.navigate(['/addOrUpdateRequirement']);
+  }
+
+  onEdit(id:number){
+    this.storage.set('requirementbyid',JSON.stringify({id:id,isView:false}));
+    this.router.navigate(['/addorupdateimplementation']);
   }
 }
