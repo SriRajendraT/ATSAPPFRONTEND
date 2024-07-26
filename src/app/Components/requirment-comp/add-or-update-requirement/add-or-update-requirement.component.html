@@ -1,1 +1,61 @@
 <p>add-or-update-requirement works!</p>
+<div class="container-fulid">
+  <div class="row d-center">
+    <div class="col-md-6">
+      <div>
+        <h3
+          class="text-center"
+          [ngClass]="
+            'text' +
+            (requirmentFormGroup.controls['requirementid'].value > 0
+              ? '-warning'
+              : '-success')
+          "
+        >
+          {{
+            requirmentFormGroup.controls["requirementid"].value > 0
+              ? "Update"
+              : "Register"
+          }}
+        </h3>
+      </div>
+      <form [formGroup]="requirmentFormGroup">
+        <div class="form-group mb-3" hidden>
+          <label for="requirementid" class="form-label">Requirement ID</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="requirementid"
+            id="requirementid"
+          />
+        </div>
+        <div class="from-group mb-3">
+          <label for="requirementtitle" class="form-label"
+            >Requirement Title</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            formControlName="requirementtitle"
+            id="requirementtitle"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="requirmentdesc" class="form-label"
+            >Requirement Description</label
+          >
+          <textarea
+            name="requirmentdesc"
+            id="requirmentdesc"
+            class="form-control"
+            rows="25"
+            formControlName="requirmentdesc"
+          ></textarea>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" name="" id="">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
