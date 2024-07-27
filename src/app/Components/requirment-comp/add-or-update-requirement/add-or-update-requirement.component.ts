@@ -8,12 +8,18 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CITY } from 'src/app/Models/CITY.Model';
+import { CLIENT } from 'src/app/Models/CLIENT.Model';
 import { COUNTRY } from 'src/app/Models/COUNTRY.model';
 import { HYBRIDTYPE } from 'src/app/Models/HYBRIDTYPE.Model';
+import { IMPLEMENTATION } from 'src/app/Models/IMPLEMENTATION.Model';
+import { ReqVisa } from 'src/app/Models/REQUIREDVISA.Model';
+import { REQUIREMENT, RequirementExt } from 'src/app/Models/REQUIREMENT.Model';
 import { STATE } from 'src/app/Models/STATE.Model';
 import { VISA } from 'src/app/Models/VISA.Model';
 import { WORKNATURE } from 'src/app/Models/WORKNATURE.Model';
 import { BasicGetAPiService } from 'src/services/Api/basicGet.service';
+import { ClientApiService } from 'src/services/Api/client.service';
+import { ImplementationApiService } from 'src/services/Api/implementation.service';
 import { RequirementApiService } from 'src/services/Api/requirement.service';
 import { StorageService } from 'src/services/storage-service/storage.service';
 
@@ -23,12 +29,18 @@ import { StorageService } from 'src/services/storage-service/storage.service';
   styleUrls: ['./add-or-update-requirement.component.css'],
 })
 export class AddOrUpdateRequirementComponent implements OnInit {
-  worknature: WORKNATURE[];
+  worknatures: WORKNATURE[];
   hybridTypes: HYBRIDTYPE[];
   countries: COUNTRY[];
   states: STATE[];
   cities: CITY[];
   visas: VISA[];
+  weeklyrate: number = 0;
+  montlyrate: number = 0;
+  yearlyrate: number = 0;
+  implementations: IMPLEMENTATION[];
+  clients: CLIENT[];
+  hidehybridtype: boolean = true;
   requirmentFormGroup: FormGroup = new FormGroup({});
 
   constructor(
@@ -36,14 +48,40 @@ export class AddOrUpdateRequirementComponent implements OnInit {
     private reqApi: RequirementApiService,
     private router: Router,
     private storage: StorageService,
-    private builder: FormBuilder
+    private builder: FormBuilder,
+    private impleApi: ImplementationApiService,
+    private cliApi: ClientApiService
   ) {}
 
   ngOnInit(): void {
+    this.inItForm();
+    this.getAllImplementations();
+    this.getAllClients();
     this.getAllVisas();
     this.getAllCountries();
     this.getAllWn();
-    this.inItForm();
+  }
+
+  getAllImplementations() {
+    this.impleApi
+      .getAllImplementations()
+      .subscribe((result: IMPLEMENTATION[]) => {
+        if (result) {
+          this.implementations = result;
+        } else {
+          this.implementations = result;
+        }
+      });
+  }
+
+  getAllClients() {
+    this.cliApi.getAllClients().subscribe((result: CLIENT[]) => {
+      if (result) {
+        this.clients = result;
+      } else {
+        this.clients = [];
+      }
+    });
   }
 
   getAllVisas() {
@@ -59,9 +97,9 @@ export class AddOrUpdateRequirementComponent implements OnInit {
   getAllWn() {
     this.bgetApi.getAllWorkNature().subscribe((result: WORKNATURE[]) => {
       if (result) {
-        this.worknature = result;
+        this.worknatures = result;
       } else {
-        this.worknature = [];
+        this.worknatures = [];
       }
     });
   }
@@ -75,15 +113,16 @@ export class AddOrUpdateRequirementComponent implements OnInit {
 
   getHybridTypeBySelectedWN(id: number) {
     this.requirmentFormGroup.controls['requirmenthybridtype'].setValue(0);
-    if (id == 3) {
+    if (id != 3) {
+      this.hidehybridtype = !this.hidehybridtype;
+      this.hybridTypes = [];
+    } else {
+      this.hidehybridtype = !this.hidehybridtype;
       this.bgetApi.getAllHybridTypes().subscribe((result: HYBRIDTYPE[]) => {
         if (result) {
           this.hybridTypes = result;
         }
       });
-    } else {
-      this.hybridTypes = [];
-      this.requirmentFormGroup.controls['requirmenthybridtype'].disable();
     }
   }
 
@@ -93,6 +132,8 @@ export class AddOrUpdateRequirementComponent implements OnInit {
         this.countries = result;
       } else {
         this.countries = [];
+        this.requirmentFormGroup.controls['requirmentloccity'].disable();
+        this.requirmentFormGroup.controls['requirmentloccity'].setValue(0);
       }
     });
   }
@@ -105,6 +146,7 @@ export class AddOrUpdateRequirementComponent implements OnInit {
   }
 
   getStatesByCountryId(id: number) {
+    this.requirmentFormGroup.controls['requirmentlocstate'].enable();
     this.requirmentFormGroup.controls['requirmentlocstate'].setValue(0);
     if (id > 0) {
       this.bgetApi.getAllStatesByCountry(id).subscribe((result: STATE[]) => {
@@ -112,11 +154,14 @@ export class AddOrUpdateRequirementComponent implements OnInit {
           this.states = result;
         } else {
           this.states = [];
+          this.requirmentFormGroup.controls['requirmentloccity'].disable();
         }
       });
     } else {
       this.states = [];
       this.requirmentFormGroup.controls['requirmentlocstate'].disable();
+      this.requirmentFormGroup.controls['requirmentloccity'].disable();
+      this.requirmentFormGroup.controls['requirmentloccity'].setValue(0);
     }
   }
 
@@ -128,6 +173,7 @@ export class AddOrUpdateRequirementComponent implements OnInit {
   }
 
   getCitiesByStateId(id: number) {
+    this.requirmentFormGroup.controls['requirmentloccity'].enable();
     this.requirmentFormGroup.controls['requirmentloccity'].setValue(0);
     if (id > 0) {
       this.bgetApi.getAllCityByState(id).subscribe((result: CITY[]) => {
@@ -157,7 +203,6 @@ export class AddOrUpdateRequirementComponent implements OnInit {
       requirmentlocstate: [0],
       requirmentloccity: [0],
     });
-    this.requirmentFormGroup.controls['requirmenthybridtype'].disable();
     this.requirmentFormGroup.controls['requirmentlocstate'].disable();
     this.requirmentFormGroup.controls['requirmentloccity'].disable();
   }
@@ -165,6 +210,59 @@ export class AddOrUpdateRequirementComponent implements OnInit {
   invalidZero(c: AbstractControl) {
     const f = c.value === 0 || c.value === '0';
     return f ? { invalidZero: true } : null;
+  }
+
+  changeHourlytoweekly(event: any) {
+    var hourlyrate = parseFloat(
+      (event.target.value ?? '') == '' ? '0' : event.target.value
+    );
+    this.calculateWeekly(hourlyrate);
+  }
+
+  calculateWeekly(rate: number) {
+    if (rate > 0) {
+      this.weeklyrate = rate * 45;
+      this.calculatemonthly(this.weeklyrate);
+    } else {
+      this.weeklyrate = 0;
+      this.calculatemonthly(this.weeklyrate);
+    }
+  }
+
+  calculatemonthly(rate: number) {
+    if (rate > 0) {
+      this.montlyrate = rate * 4;
+      this.calculateyearly(this.montlyrate);
+    } else {
+      this.montlyrate = 0;
+      this.calculateyearly(this.montlyrate);
+    }
+  }
+
+  calculateyearly(rate: number) {
+    if (rate > 0) {
+      this.yearlyrate = rate * 12;
+    } else {
+      this.yearlyrate = 0;
+    }
+  }
+
+  addOrUpdateRequirement() {
+    var req = new ReqVisa();
+    req.requirement = this.requirmentFormGroup.value as RequirementExt;
+    if (req.requirement.requirementid != 0) {
+      this.reqApi.addOrUpdateRequirement(req).subscribe((result: boolean) => {
+        if (result) {
+          this.onBack();
+        }
+      });
+    } else {
+      this.reqApi.addOrUpdateRequirement(req).subscribe((result: boolean) => {
+        if (result) {
+          this.onBack();
+        }
+      });
+    }
   }
 
   onBack() {

@@ -1,7 +1,7 @@
 <p>add-or-update-requirement works!</p>
 <div class="container-fulid">
   <div class="row d-center">
-    <div class="col-md-6">
+    <div class="col-md-10">
       <div>
         <h3
           class="text-center"
@@ -17,11 +17,12 @@
               ? "Update"
               : "Register"
           }}
+          Requirement
         </h3>
       </div>
       <form [formGroup]="requirmentFormGroup">
-        <div class="form-group mb-3" hidden>
-          <label for="requirementid" class="form-label">Requirement ID</label>
+        <div class="form-group mb-3" >
+          <label for="" class="form-label">Requirement ID</label>
           <input
             type="text"
             class="form-control"
@@ -41,6 +42,155 @@
           />
         </div>
         <div class="form-group mb-3">
+          <label for="" class="form-label">Required Visas</label>
+          <div class="form-check reqvisa" *ngFor="let visa of visas">
+            <label for="" class="form-label"
+              ><input
+                type="checkbox"
+                name=""
+                id=""
+                class="form-check-inline"
+                [value]="visa.visaid"
+              />{{ visa.visaname }}</label
+            >
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="" class="form-label">Implementation Details</label>
+          <select
+            class="form-select"
+            name="requirementimplementation"
+            id="requirementimplementation"
+            formControlName="requirementimplementation"
+          >
+            <option value="0">Select Implementation</option>
+            <option
+              *ngFor="let imple of implementations"
+              [value]="imple.implementationid"
+            >
+              {{ imple.implementationname }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <label for="" class="form-label">Client Details</label>
+          <select
+            class="form-select"
+            name="requirementclient"
+            id="requirementclient"
+            formControlName="requirementclient"
+          >
+            <option value="0">Select Client</option>
+            <option *ngFor="let cli of clients" [value]="cli.clientid">
+              {{ cli.clientname }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <label for="" class="form-label">Nature Of Work</label>
+          <select (change)="changeHybridTypebywnId($event)" name="requirmentwn" id="requirmentwn" formControlName="requirmentwn" class="form-select">
+            <option value="0">Select Work Nature</option>
+            <option *ngFor="let wn of worknatures" [value]="wn.worknatureid">{{wn.worknaturename}}</option>
+          </select>
+        </div>
+        <div class="form-group mb-3" [hidden]="hidehybridtype">
+          <label for="" class="form-label">Hybrid Type</label>
+          <select name="requirmenthybridtype" id="requirmenthybridtype" class="form-select" formControlName="requirmenthybridtype">
+            <option value="0">Select Hybrid Type</option>
+            <option *ngFor="let hyt of hybridTypes" [value]="hyt.hybridtypeid">{{hyt.hybridtypename}}</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-6 mb-3">
+          <label for="" class="form-label">Max Rate Hourly</label
+          >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="" class="form-label">Max Rate Weekly</label
+          >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="" class="form-label">Max Rate Monthly</label
+          >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="" class="form-label">Max Rate Yearly</label>
+          <div class="ratereq">
+            <input
+              type="text"
+              name="requirementmaxrate"
+              id="requirementmaxrate"
+              class="form-control"
+              formControlName="requirementmaxrate"
+              (change)="changeHourlytoweekly($event)"
+            />&nbsp;
+            <input
+              type="text"
+              name="weeklymaxrate"
+              id="weeklymaxrate"
+              class="form-control"
+              [disabled]="true"
+              [value]="weeklyrate"
+            />&nbsp;
+            <input
+              type="text"
+              name="monthlymaxrate"
+              id="monthlymaxrate"
+              class="form-control"
+              [disabled]="true"
+              [value]="montlyrate"
+            />&nbsp;
+            <input
+              type="text"
+              name="yearlymaxrate"
+              id="yearlymaxrate"
+              class="form-control"
+              [disabled]="true"
+              [value]="yearlyrate"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="" class="form-label">Country</label>
+          <select
+            (change)="changeStatesByCountryId($event)"
+            name="requirementloccountry"
+            id="requirementloccountry"
+            class="form-select"
+            formControlName="requirementloccountry"
+          >
+            <option value="0">Select Country</option>
+            <option
+              *ngFor="let country of countries"
+              [value]="country.countryid"
+            >
+              {{ country.countryname }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <label for="" class="form-label">State</label>
+          <select
+            (change)="changeCitiesByStateId($event)"
+            name="requirmentlocstate"
+            id="requirmentlocstate"
+            class="form-select"
+            formControlName="requirmentlocstate"
+          >
+            <option value="0">Select State</option>
+            <option *ngFor="let state of states" [value]="state.stateid">
+              {{ state.statename }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <label for="" class="form-label">City</label>
+          <select
+            name="requirmentloccity"
+            id="requirmentloccity"
+            class="form-select"
+            formControlName="requirmentloccity"
+          >
+            <option value="0">Select City</option>
+            <option *ngFor="let city of cities" [value]="city.cityid">
+              {{ city.cityname }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
           <label for="requirmentdesc" class="form-label"
             >Requirement Description</label
           >
@@ -52,8 +202,26 @@
             formControlName="requirmentdesc"
           ></textarea>
         </div>
-        <div class="form-check mb-3">
-            <input type="checkbox" name="" id="">
+        <div class="btn-div mb-5">
+          <button
+            (click)="addOrUpdateRequirement()"
+            [ngClass]="
+              'btn btn' +
+              (requirmentFormGroup.controls['requirementid'].value > 0
+                ? '-warning'
+                : '-primary')
+            "
+          >
+            {{
+              requirmentFormGroup.controls['requirementid'].value > 0
+                ? "Edit"
+                : "Signup"
+            }}
+          </button>
+          &nbsp;
+          <button class="btn btn-dark" type="button" (click)="onBack()">
+            Back
+          </button>
         </div>
       </form>
     </div>

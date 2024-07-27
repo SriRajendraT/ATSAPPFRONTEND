@@ -38,7 +38,7 @@ export class BasicGetAPiService {
   getAllCityByState(id: number): Observable<CITY[]> {
     var kv = new KeyValue();
     kv.key1 = id;
-    return this.http.post<CITY[]>(this.BasicGetAPi + 'GetSTATESBYCOUNTRY', kv);
+    return this.http.post<CITY[]>(this.BasicGetAPi + 'GetCITIESBYSTATE', kv);
   }
 
   getAllWorkNature(): Observable<WORKNATURE[]> {

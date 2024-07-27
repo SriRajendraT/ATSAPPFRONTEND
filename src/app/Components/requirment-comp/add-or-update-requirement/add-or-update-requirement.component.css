@@ -1,0 +1,15 @@
+.reqvisa {
+  display: inline-block;
+}
+
+.reqvisa input {
+  vertical-align: middle;
+}
+
+.reqvisa label {
+  vertical-align: middle;
+}
+
+.ratereq {
+  display: flex;
+}
